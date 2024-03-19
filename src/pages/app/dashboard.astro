@@ -5,8 +5,16 @@ import AddNewProjectCard from "@components/app/projects/AddNewProjectCard.astro"
 import HamburgerMenuButton from "@components/app/HamburgerMenuButton.astro";
 import { getProjects } from "@data/pocketbase";
 import TasksList from "@components/app/tasks/TasksList.astro";
+import type { ProjectsResponse } from "@data/pocketbase-types";
 
-const projects = await getProjects();
+let projects: ProjectsResponse[] = [];
+
+try {
+  projects = await getProjects();
+} catch (error) {
+  console.error(error);
+  projects = [];
+}
 ---
 
 <LayoutApp title="Dashboard">
