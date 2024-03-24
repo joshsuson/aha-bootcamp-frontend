@@ -111,8 +111,7 @@ export async function processTurnstile(cf_turnstile_response: string) {
 
   const requestBody = new URLSearchParams({
     secret:
-      import.meta.env.TURNSTILE_SITE_SECRET ||
-      process.env.TURNSTILE_SITE_SECRET,
+      import.meta.env.TURNSTILE_SECRET_KEY || process.env.TURNSTILE_SECRET_KEY,
     response: cf_turnstile_response,
   });
 
