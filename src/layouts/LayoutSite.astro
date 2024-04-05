@@ -12,6 +12,18 @@ const { title = "SecretPlan" } = Astro.props;
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="  
+        default-src 'self' data:; 
+        script-src 'self' https://challenges.cloudflare.com;
+        style-src 'self' 'unsafe-inline';
+        frame-src https://challenges.cloudflare.com; 
+        connect-src 'self'; 
+        img-src 'self' data:;
+        object-src 'none';
+      "
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
