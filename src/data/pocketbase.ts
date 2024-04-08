@@ -76,6 +76,7 @@ export async function getTasks(
   const options = {
     filter: "",
     expand: "project",
+    sort: "-starred_on, created",
   };
 
   let filter = `completed = ${done}`;
@@ -142,4 +143,28 @@ export function processImages(task: TasksResponse) {
   });
 
   return images;
+}
+
+export async function addTeam(name: string) {
+  let team = await pb.collection("teams").create({
+    name,
+    created_by: pb.authStore.model?.id,
+    status: "inactive",
+  });
+
+  return team;
+}
+
+export async function getTeam(id: string) {
+  const team = await pb.collection("teams").getOne(id);
+
+  return team;
+}
+
+export async function userIsTeamOwner(team_id: string) {
+  const team = await getTeam(team_id);
+  if (team.created_by === pb.authStore.model?.id) {
+    return true;
+  }
+  return false;
 }
