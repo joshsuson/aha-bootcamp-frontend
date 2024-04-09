@@ -10,7 +10,7 @@ import type { ProjectsResponse } from "@data/pocketbase-types";
 let projects: ProjectsResponse[] = [];
 
 try {
-  projects = await getProjects();
+  projects = await getProjects({});
 } catch (error) {
   console.error(error);
   projects = [];
