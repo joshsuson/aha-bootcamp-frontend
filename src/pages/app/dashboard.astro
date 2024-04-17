@@ -6,6 +6,7 @@ import HamburgerMenuButton from "@components/app/HamburgerMenuButton.astro";
 import { getProjects } from "@data/pocketbase";
 import TasksList from "@components/app/tasks/TasksList.astro";
 import type { ProjectsResponse } from "@data/pocketbase-types";
+import Invites from "@components/app/dashboard/Invites.astro";
 
 let projects: ProjectsResponse[] = [];
 
@@ -27,6 +28,7 @@ try {
       </div>
       Projects
     </div>
+    <Invites />
     <div id="starred-tasks-list">
       <TasksList starred={true} />
     </div>
